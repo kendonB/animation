@@ -48,12 +48,12 @@ find_magic = function() {
     message('but I can find it from the "Program Files" directory: ', magick.path)
   } else if (
     # Look for it in the C drive
-    nzchar(length(magick.dir <- list.files("C:\\", '^ImageMagick.*')) &&
-      length(magick.path <- list.files(file.path(prog, magick.dir), pattern = '^convert\\.exe$',
+    length(magick.dir <- list.files("C:\\", '^ImageMagick.*')) &&
+      length(magick.path <- list.files(file.path("C:\\", magick.dir), pattern = '^convert\\.exe$',
                                        full.names = TRUE, recursive = TRUE))
   ) {
     convert = normalizePath(magick.path[1])
-    message('but I can find it from the "Program Files" directory: ', magick.path)
+    message('but I can find it from the "C" directory: ', magick.path)
   } else if (!inherits(try({
     magick.path = utils::readRegistry('LyX.Document\\Shell\\open\\command', 'HCR')
   }, silent = TRUE), 'try-error')) {
